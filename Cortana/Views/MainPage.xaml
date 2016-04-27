@@ -1,0 +1,46 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:controls="using:Template10.Controls"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:Sample.Views"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:vm="using:Sample.ViewModels" xmlns:Behaviors="using:Template10.Behaviors" x:Class="Sample.Views.MainPage"
+      mc:Ignorable="d">
+
+    <Page.DataContext>
+        <vm:MainPageViewModel />
+    </Page.DataContext>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <!--  header  -->
+        <controls:PageHeader BackButtonVisibility="Collapsed" Content="Main Page"
+			Frame="{x:Bind Frame, Mode=OneWay}" VisualStateNarrowMinWidth="-1">
+            <AppBarButton Icon="Setting" Label="Settings" Click="{x:Bind ViewModel.GotoSettings}" />
+        </controls:PageHeader>
+
+        <!--  #region content  -->
+
+        <StackPanel Grid.Row="1" Padding="12,4,0,0">
+
+            <TextBlock Style="{StaticResource HeaderTextBlockStyle}" Text="{Binding Value}" />
+
+            <StackPanel Margin="0,12" Orientation="Horizontal">
+                <Button Click="{x:Bind ViewModel.Speak}" Content="Speak"/>
+                <Button Margin="12,0" Command="{x:Bind ViewModel.ListenCommand}" Content="Listen"/>
+            </StackPanel>
+
+        </StackPanel>
+
+        <!--  #endregion  -->
+
+    </Grid>
+</Page>
